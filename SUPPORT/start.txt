@@ -1,0 +1,15 @@
+python3 -m venv .venv 
+source .venv/bin/activate  
+-------------------
+scrapy crawl hotels_crawler
+-----------------------
+pip install scrapy
+----------
+scrapy crawl hotels_crawler
+-----------------
+pip install sqlalchemy
+-------------------
+pip install psycopg2-binary
+-----------
+scrapy crawl hotels_crawler
+-----------------

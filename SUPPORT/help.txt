@@ -1,0 +1,33 @@
+scrapy startproject scrapingcourse_scraper
+cd scrapingcourse_scraper
+scrapy genspider scraper https://www.scrapingcourse.com/ecommerce/
+    
+
+scrapy crawl scraper
+
+scrapy crawl scraper -O products.csv 
+
+scrapy crawl scraper -O products.json 
+
+scrapy crawl scraper -O products.json -s FEED_EXPORT_INDENT=4
+
+
+scrapy crawl random_city_hotels_crawl_scraper
+
+scrapy crawl hotels_crawler
+
+
+#config.py
+DB_USERNAME='aa_nadim'
+DB_PASSWORD='aa_nadim123'
+DB_HOST='postgres'
+DB_PORT='5432'
+DB_NAME='scraping_db'
+
+
+.env
+DB_USERNAME=aa_nadim
+DB_PASSWORD=aa_nadim123
+DB_HOST=postgres
+DB_PORT=5432
+DB_NAME=scraping_db
