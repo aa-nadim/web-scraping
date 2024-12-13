@@ -5,7 +5,7 @@ import random
 
 
 class RandomCityHotelsSpider(scrapy.Spider):
-    name = "random_city_hotels_crawl_scraper"
+    name = "test"
     allowed_domains = ["uk.trip.com"]
     start_urls = ["https://uk.trip.com/hotels/?locale=en-GB&curr=GBP"]
 

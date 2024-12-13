@@ -15,9 +15,4 @@ Password for user postgres:postgres
 
 CREATE DATABASE scrapingdb;
 
-
-scrapy crawl test2
-
-from hotel_scraper.models import test_database_connection
-
-from test2.models import test_database_connection
+scrapy crawl test
