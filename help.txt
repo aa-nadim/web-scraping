@@ -1,0 +1,23 @@
+python3 -m venv .venv 
+source .venv/Scripts/activate 
+
+pip install -r requirements.txt
+
+
+scrapy crawl random_city_hotels_crawl_scraper
+
+scrapy crawl test2
+
+
+
+$ "C:\Program Files\PostgreSQL\17\bin\psql.exe" -U postgres
+Password for user postgres:postgres
+
+CREATE DATABASE scrapingdb;
+
+
+scrapy crawl test2
+
+from hotel_scraper.models import test_database_connection
+
+from test2.models import test_database_connection
