@@ -1,0 +1,61 @@
+services:
+  scraper:
+    build: .
+    container_name: scraper_container
+    volumes:
+      - .:/usr/src/app
+      - ./images:/usr/src/app/images
+    working_dir: /usr/src/app
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+    env_file:
+      - .env
+    environment:
+      # - DATABASE_URL = postgresql+psycopg2://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}
+      - DATABASE_URL = postgresql+psycopg2://aa_nadim:aa_nadim123@postgres:5432/scraping_db
+    command: ["scrapy", "crawl", "hotels_crawler"]
+
+  postgres:
+    image: postgres:latest
+    container_name: postgresDB_container
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: aa_nadim
+      POSTGRES_PASSWORD: aa_nadim123
+      POSTGRES_DB: scraping_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:  
+      test: ["CMD-SHELL", "pg_isready -U aa_nadim"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  app_network:
+    driver: bridge
